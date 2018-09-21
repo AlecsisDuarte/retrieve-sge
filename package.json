@@ -1,0 +1,28 @@
+{
+  "name": "retrieve-sge",
+  "version": "1.0.0",
+  "description": "Little application to retrieve passwords from sge.mexicali.tecnm.mx",
+  "main": "retrieve-sge",
+  "scripts": {
+    "test": "echo 'No implemented'",
+    "start": "nodemon retrieve-sge.js"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript",
+    "es6",
+    "http"
+  ],
+  "author": "Alexis Duarte",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "colors": "^1.3.2",
+    "commander": "^2.18.0",
+    "inquirer": "^6.2.0",
+    "jsdom": "^12.0.0",
+    "nodemon": "^1.18.4",
+    "sqlite3": "^4.0.2",
+    "threads": "^0.12.0"
+  }
+}

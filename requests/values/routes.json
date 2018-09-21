@@ -1,0 +1,5 @@
+{
+    "baseURL": "https://sge.mexicali.tecnm.mx/",
+    "authorizeStudent": "login/autoriza-alumno",
+    "studentLogin": "login/alumno"
+}

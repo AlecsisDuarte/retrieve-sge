@@ -1,0 +1,31 @@
+{
+    "DATABASES": {
+        "SGE": {
+            "NAME": "sgemexicali.db",
+            "TABLES": {
+                "CONTROL_NUMBERS": {
+                    "NAME": "ControlNumber",
+                    "COLUMNS": {
+                        "ID": {
+                            "NAME": "id",
+                            "TYPE": "INTEGER PRIMARY KEY"
+                        },
+                        "CONTROL_NUMBER": {
+                            "NAME": "controlNumber",
+                            "TYPE": "TEXT"
+                        },
+                        "PASSWORD": {
+                            "NAME": "password",
+                            "TYPE": "TEXT"
+                        },
+                        "VALID": {
+                            "NAME": "valid",
+                            "TYPE": "INTEGER"
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

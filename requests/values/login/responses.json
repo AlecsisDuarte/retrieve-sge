@@ -1,0 +1,6 @@
+{
+    "WRONG_PASSWORD": "La contraseña es incorrecta",
+    "INVALID_CONTROL_NUMBER": "El número de control es incorrecto o no existe",
+    "SYSTEM_ERROR": "Error de sistema",
+    "WRONG_PASSWORD": "La contraseña es incorrecta"
+}
