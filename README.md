@@ -1,5 +1,7 @@
 #Retrieve SGE
-####CLI to validate your Control Number and get your password from [SGE](https://sge.mexicali.tecnm.mx/login)
+
+######CLI to validate your Control Number and get your password from [SGE](https://sge.mexicali.tecnm.mx/login)
+
 
 ###Installation
 To start using the CLI, you first need to have [NodeJS](https://nodejs.org/) installed using either of the two options presented should do just fine.
