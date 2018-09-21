@@ -1,4 +1,4 @@
-#Retreive SGE
+#Retrieve SGE
 ####CLI to validate your Control Number and get your password from [SGE](https://sge.mexicali.tecnm.mx/login)
 
 ###Installation
@@ -6,19 +6,18 @@ To start using the CLI, you first need to have [NodeJS](https://nodejs.org/) ins
 
 Once you have [NodeJS](https://nodejs.org/) installed just clone the repository:
 ```
-git clone https://github.com/AlecsisDuarte/retrieve-sge.git
-```
-After you clone the repository, you would need to access the root of the project:
-```
-cd retreive-sge
+git clone https://github.com/AlecsisDuarte/retrieve-sge.git && cd retrieve-sge
 ```
 
-Then install all the node modules using the node package manager command like this:
+Then inside the root folder of the project install all the node modules using the node package manager command like this:
 ```
 npm install
 ```
-
-If you want to get rid of the need of always going to the root of the project to run it's commands, you can use the next command to make the executable global:
+Once all node modules are install you'll need to make the script executable:
+```
+chmod +x retrieve-sge.js
+```
+After all that you will be able to use the CLI but if you want to get rid of the need of always going to the root of the project to run it's commands, you can use the next command to make the executable global:
 ```
 npm link
 ```
@@ -41,23 +40,23 @@ It comes with 4 commands:
 In order to make use of the commands and if you didn't use the `npm link` command you will need to type `./retrieve-sge.js` before the command and inside the root folder of the project, otherwise you could run the commands using `retrieve-sge` from anywhere.
 For example, in order to create the database you would use:
 ```
-./retreive-sge.js createDatabase
+./retrieve-sge.js createDatabase
 ```
 or
 ```
-retreive-sge create
+retrieve-sge create
 ```
 
 If you want to validate your password you would use:
 ```
-./retreive-sge.js validate 19999999
+./retrieve-sge.js validate 19999999
 ```
 or
 ```
-retreive-sge v 19999999
+retrieve-sge v 19999999
 ```
 
 ###Notes
 * *It is advice that if you are able to retrieve your password using this application you **change it**, as this means your account is vurnerable to brute force attacks like this one.*
 
-* *If you already changed your password and this has other than **6 digits numbers**, this application won't be able to retreive it.*
+* *If you already changed your password and this has other than **6 digits numbers**, this application won't be able to retrieve it.*

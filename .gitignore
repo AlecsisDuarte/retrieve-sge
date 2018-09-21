@@ -62,3 +62,6 @@ typings/
 
 #vscode files
 .vscode
+
+#databases
+*.db
