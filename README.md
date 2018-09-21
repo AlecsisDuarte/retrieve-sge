@@ -17,10 +17,11 @@ Once all node modules are install you'll need to make the script executable:
 ```
 chmod +x retrieve-sge.js
 ```
+<!--
 After all that you will be able to use the CLI but if you want to get rid of the need of always going to the root of the project to run it's commands, you can use the next command to make the executable global:
 ```
 npm link
-```
+``` -->
 
 
 ###Usage
@@ -36,6 +37,7 @@ It comes with 4 commands:
 4. `password|p <controlNumber> [cores]`
    Once you created the database and validated the control number, you can start the process of password retrieving, where the application it's going to use brute force to get it.
    In order to speed up the process the applicaction is able to get the ammount of cores your system has and start the ammount of jobs accordingly or you could specify it your self in case you don't want to use all of your cores.
+
 
 In order to make use of the commands and if you didn't use the `npm link` command you will need to type `./retrieve-sge.js` before the command and inside the root folder of the project, otherwise you could run the commands using `retrieve-sge` from anywhere.
 For example, in order to create the database you would use:

@@ -29,6 +29,7 @@ commander
     .description('Creates a database where we store Control Numbers and Passwords')
     .action(() => {
         console.log(colors.blue('DATABASE CREATOR'));
+
         let db = new sqlite3.Database(`./db/${DBValues.DATABASES.SGE.NAME}`);
         const columns = DBValues.DATABASES.SGE.TABLES.CONTROL_NUMBERS.COLUMNS;
         const sql = `CREATE TABLE ${DBValues.DATABASES.SGE.TABLES.CONTROL_NUMBERS.NAME}(
@@ -189,4 +190,9 @@ function dbClosed(err) {
     if (err) {
         console.log('Error: %s', colors.red("Couldn't close the database"));
     }
+}
+
+function createDatabaseFolder() {
+    
+    if (fs)
 }
