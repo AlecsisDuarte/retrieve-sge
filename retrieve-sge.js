@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const commander = require('commander'),
     colors = require('colors'),
     validate = require('./requests/validate'),
@@ -108,7 +110,7 @@ commander
 commander
     .command('password <controlNumber> [cores]')
     .alias('p')
-    .description('Search for the password of this control number')
+    .description('Search for the password of this control number using all your cores or you can specify the ammount manually')
     .action(async (controlNumber, cores) => {
         console.log(colors.blue('PASSWORD SEARCHER'));
         let db = new sqlite3.Database(`./db/${DBValues.DATABASES.SGE.NAME}`, sqlite3.OPEN_READWRITE, async (err) => {
@@ -180,16 +182,6 @@ commander
             }
         });
     });
-
-commander
-    .command('test <controlNumber>')
-    .alias('t')
-    .description('Multiprocess test')
-    .action((controlNumber, cores) => {
-
-        // 
-
-    })
 
 commander.parse(process.argv);
 
