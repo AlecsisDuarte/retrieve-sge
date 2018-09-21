@@ -131,10 +131,17 @@ commander
                         db.close(dbClosed);
                     } else if (res) {
                         let CORES = 1;
+                        let availableCores = os.cpus().length;
                         if (cores !== undefined) {
-                            CORES = cores;
+                            if(cores > availableCores){
+                                console.log('%s %s %s', colors.gray('You only have'), colors.yellow(availableCores), colors.gray('cores available.'));
+                                CORES = availableCores;
+                            }
+                            else{
+                                CORES = cores;
+                            }
                         } else {
-                            CORES = os.cpus().length;
+                            CORES = availableCores;
                         }
                         console.log('%s %s %s', colors.gray('Using'), colors.yellow(CORES), colors.gray('cores'));
 
@@ -194,5 +201,5 @@ function dbClosed(err) {
 
 function createDatabaseFolder() {
     
-    if (fs)
+    if (fs){}
 }
