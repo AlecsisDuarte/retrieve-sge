@@ -1,9 +1,9 @@
-#Retrieve SGE
+# Retrieve SGE
 
-######CLI to validate your Control Number and get your password from [SGE](https://sge.mexicali.tecnm.mx/login)
+###### CLI to validate your Control Number and get your password from [SGE](https://sge.mexicali.tecnm.mx/login)
 
 
-###Installation
+### Installation
 To start using the CLI, you first need to have [NodeJS](https://nodejs.org/) installed using either of the two options presented should do just fine.
 
 Once you have [NodeJS](https://nodejs.org/) installed just clone the repository:
@@ -26,7 +26,7 @@ npm link
 ``` -->
 
 
-###Usage
+### Usage
 Once installed, the CLI usage is really simple.
 It comes with 4 commands:
 1. `-h`
@@ -60,7 +60,7 @@ or
 retrieve-sge v 19999999
 ```
 
-###Notes
+### Notes
 * *It is advice that if you are able to retrieve your password using this application you **change it**, as this means your account is vurnerable to brute force attacks like this one.*
 
 * *If you already changed your password and this has other than **6 digits numbers**, this application won't be able to retrieve it.*
