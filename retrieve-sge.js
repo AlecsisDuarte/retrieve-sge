@@ -8,6 +8,7 @@ const commander = require('commander'),
     DBValues = Json.load(__dirname, "./db/databases.json"),
     os = require('os'),
     threads = require('threads'),
+    pjson = require('./package.json'),
     config = threads.config,
     Pool = threads.Pool,
     MAX_VAL = 999999;
@@ -19,12 +20,14 @@ config.set({
 });
 
 commander
-    .version('0.0.1')
-    .description('Password retriever system');
+    .version(pjson.version)
+    .option('-c, --cores <cores>', 'Ammount of cores', /^[0-9]{2,}|[1-9]$/)
+    .description(colors.blue('Password retriever system'));
+
 
 commander
-    .command('createDatabase')
-    .alias('create')
+    .command('create')
+    .alias('c')
     .description('Creates a database where we store Control Numbers and Passwords')
     .action(() => {
         console.log(colors.blue('DATABASE CREATOR'));
@@ -106,7 +109,7 @@ commander
     });
 
 commander
-    .command('password <controlNumber> [cores]')
+    .command('password <controlNumber> [options]')
     .alias('p')
     .description('Search for the password of this control number using all your cores or you can specify the ammount manually')
     .action(async (controlNumber, cores) => {
@@ -127,8 +130,8 @@ commander
                         console.log('Error: %s', colors.red("Couldn't retrieve the control numbers"));
                         db.close(dbClosed);
                     } else if (res) {
-                        const CORES = cores || os.cpus().length;
-                        console.log('%s %s %s', colors.gray('Using'), colors.yellow(CORES), colors.gray('cores'));
+                        const CORES = commander.cores || os.cpus().length;
+                        console.log(colors.gray(`Using ${colors.yellow(CORES)} cores`));
                         const pool = new Pool(cores);
                         let part = Math.round(MAX_VAL / CORES);
                         let counter = 0;
