@@ -193,13 +193,8 @@ commander
 
 commander.parse(process.argv);
 
-function dbClosed(err) {
-    if (err) {
-        console.log('Error: %s', colors.red("Couldn't close the database"));
-    }
-}
-
-function createDatabaseFolder() {
-    
-    if (fs){}
-}
+// function dbClosed(err) {
+//     if (err) {
+//         console.log('Error: %s', colors.red("Couldn't close the database"));
+//     }
+// }
