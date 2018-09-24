@@ -1,6 +1,6 @@
 {
   "name": "retrieve-sge",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Little application to retrieve passwords from sge.mexicali.tecnm.mx",
   "main": "retrieve-sge",
   "scripts": {
