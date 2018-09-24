@@ -28,17 +28,21 @@ npm link
 
 ### Usage
 Once installed, the CLI usage is really simple.
-It comes with 4 commands:
-1. `-v`
+**Options**
+1. `-v, --version`
     To print out the version
-3. `-h`
-    Used to get information of the other commands
-4. `-createDatabase | -c`
+2. `-h, --help`
+    Used to get information about the commands and options
+3. `-c, --cores <cores>`
+    Specify the ammount of cores to be used (jobs)
+
+**Commands**
+1. `create | c`
     This command creates an SQLite database where all your Control Numbers validations and passwords will be stored. 
     In order to use the other 2 commands is necesary that you create the database.
-5. `-validate | -v <controlNumber>` 
+2. `validate | v <controlNumber>` 
     Use this command to validate your Control Number, you must do this before you try to reteive your password
-6. `-password | -p <controlNumber> [cores]`
+3. `password | p <controlNumber> [options]`
     Once you created the database and validated the control number, you can start the process of password retrieving, where the application it's going to use brute force to get it.
     In order to speed up the process the applicaction is able to get the ammount of cores your system has and start the ammount of jobs accordingly or you could specify it your self in case you don't want to use all of your cores.
 
