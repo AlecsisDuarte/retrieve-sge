@@ -99,7 +99,6 @@ commander
                             }
                             db.close(dbClosed);
                         } catch (exception) {
-                            db.close(dbClosed);
                             console.log(colors.red(exception));
                         }
                     }
@@ -138,12 +137,13 @@ commander
                         }
                         console.log('%s %s %s', colors.gray('Using'), colors.yellow(CORES), colors.gray('cores'));
 
-                        const pool = new Pool();
-                        let part = MAX_VAL / CORES;
+                        const pool = new Pool(cores);
+                        let part = Math.round(MAX_VAL / CORES);
                         let counter = 0;
                         for (let index = 0; index < CORES; index++) {
                             let from = counter;
                             let to = counter += part;
+                            process.stdout.write(colors.gray(`Starting thread ${colors.yellow(index)} with range: ${colors.white(from)} - ${colors.white(to)}\n`));
                             pool.run('/login.js')
                                 .send({
                                     controlNumber: controlNumber,
@@ -186,8 +186,8 @@ commander
 
 commander.parse(process.argv);
 
-// function dbClosed(err) {
-//     if (err) {
-//         console.log('Error: %s', colors.red("Couldn't close the database"));
-//     }
-// }
+function dbClosed(err) {
+    if (err) {
+        console.log('Error: %s', colors.red("Couldn't close the database"));
+    }
+}
