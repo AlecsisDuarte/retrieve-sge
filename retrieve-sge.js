@@ -3,7 +3,6 @@
 const commander = require('commander'),
     colors = require('colors'),
     validate = require('./requests/validate'),
-    login = require('./requests/login'),
     sqlite3 = require('sqlite3').verbose(),
     Json = require('./utils/json'),
     DBValues = Json.load(__dirname, "./db/databases.json"),
@@ -11,7 +10,7 @@ const commander = require('commander'),
     threads = require('threads'),
     config = threads.config,
     Pool = threads.Pool,
-    MAX_VAL = 1000000;
+    MAX_VAL = 999999;
 
 config.set({
     basepath: {
@@ -29,8 +28,7 @@ commander
     .description('Creates a database where we store Control Numbers and Passwords')
     .action(() => {
         console.log(colors.blue('DATABASE CREATOR'));
-
-        let db = new sqlite3.Database(`./db/${DBValues.DATABASES.SGE.NAME}`);
+        let db = new sqlite3.Database(`${__dirname}/db/${DBValues.DATABASES.SGE.NAME}`);
         const columns = DBValues.DATABASES.SGE.TABLES.CONTROL_NUMBERS.COLUMNS;
         const sql = `CREATE TABLE ${DBValues.DATABASES.SGE.TABLES.CONTROL_NUMBERS.NAME}(
                 ${columns.ID.NAME} ${columns.ID.TYPE}, 
@@ -59,7 +57,7 @@ commander
     .description('Validate existence of Control Number')
     .action(controlNumber => {
         console.log(colors.blue('CONTROL NUMBER VALIDATION'));
-        let db = new sqlite3.Database(`./db/${DBValues.DATABASES.SGE.NAME}`, sqlite3.OPEN_READWRITE, async (err) => {
+        let db = new sqlite3.Database(`${__dirname}/db/${DBValues.DATABASES.SGE.NAME}`, sqlite3.OPEN_READWRITE, async (err) => {
             if (err) {
                 console.log('Error: %s', colors.red("Couldn't open the database"));
                 console.log('Solution: %s', colors.yellow("Create database with createDatabase command"));
@@ -113,7 +111,7 @@ commander
     .description('Search for the password of this control number using all your cores or you can specify the ammount manually')
     .action(async (controlNumber, cores) => {
         console.log(colors.blue('PASSWORD SEARCHER'));
-        let db = new sqlite3.Database(`./db/${DBValues.DATABASES.SGE.NAME}`, sqlite3.OPEN_READWRITE, async (err) => {
+        let db = new sqlite3.Database(`${__dirname}/db/${DBValues.DATABASES.SGE.NAME}`, sqlite3.OPEN_READWRITE, async (err) => {
             if (err) {
                 console.log('Error: %s', colors.red("Couldn't open the database"));
                 console.log('Solution: %s', colors.yellow("Create database with createDatabase command"));
@@ -129,21 +127,15 @@ commander
                         console.log('Error: %s', colors.red("Couldn't retrieve the control numbers"));
                         db.close(dbClosed);
                     } else if (res) {
-                        let CORES = 1;
-                        if (cores !== undefined) {
-                            CORES = cores;
-                        } else {
-                            CORES = os.cpus().length;
-                        }
+                        const CORES = cores || os.cpus().length;
                         console.log('%s %s %s', colors.gray('Using'), colors.yellow(CORES), colors.gray('cores'));
-
                         const pool = new Pool(cores);
                         let part = Math.round(MAX_VAL / CORES);
                         let counter = 0;
                         for (let index = 0; index < CORES; index++) {
                             let from = counter;
                             let to = counter += part;
-                            process.stdout.write(colors.gray(`Starting thread ${colors.yellow(index)} with range: ${colors.white(from)} - ${colors.white(to)}\n`));
+                            process.stdout.write(colors.gray(` - Thread ${colors.yellow(index)} with range: [${colors.white(from.toString().padStart(6,'0'))} - ${colors.white(to)}]\n`));
                             pool.run('/login.js')
                                 .send({
                                     controlNumber: controlNumber,
