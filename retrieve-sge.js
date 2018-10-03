@@ -131,7 +131,11 @@ commander
                         db.close(dbClosed);
                     } else if (res) {
                         const CORES = commander.cores || os.cpus().length;
-                        console.log(colors.gray(`Using ${colors.yellow(CORES)} cores`));
+                        if(CORES > os.cpus().length){
+                          console.log(`${colors.gray('You only have')} ${colors.yellow(availableCores)} ${colors.gray('cores available.')}`);
+                          console.log(colors.gray('Some jobs will start after'));
+                        }
+                        console.log(colors.gray(`Creating ${colors.yellow(CORES)} jobs`));
                         const pool = new Pool(cores);
                         let part = Math.round(MAX_VAL / CORES);
                         let counter = 0;
