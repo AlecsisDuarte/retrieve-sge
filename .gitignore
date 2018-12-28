@@ -66,3 +66,6 @@ typings/
 
 #databases
 *.db
+
+# package lock
+package-lock.json
